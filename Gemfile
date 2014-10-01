@@ -37,3 +37,5 @@ gem 'spring',        group: :development
 gem 'simple_form'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+
+ruby '2.0.0p353'

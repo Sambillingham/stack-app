@@ -1,0 +1,29 @@
+<h1><%= link_to @story.title, @story.url %></h1>
+
+<p><%= @story.body %></p>
+
+<%= link_to "Add Comment", new_story_comment_path(@story) %>
+<%= link_to "Edit", edit_story_path %>
+<%= link_to "Delete", story_path(@story), method: :delete %>
+
+<section id="comments">
+	<% if @comments.any? %>
+
+		<% @comments.each do |comment| %>
+			
+			<div class="comment">
+				<p><%= simple_format comment.body %></p>
+				<small>Posted <%= time_ago_in_words comment.created_at %> ago </small>
+			</div>
+
+		<% end %>
+
+	<% else %>
+
+		<div class="no-comment">
+			<p>No comments yet, <%= link_to "post a comment", new_story_comment_path(@story) %></p>
+		</div>
+
+	<% end %>
+
+</section>

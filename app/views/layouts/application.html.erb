@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  	<title>Stack</title>
+	  	<%= stylesheet_link_tag 'application' %>
+	  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		 <%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<%= link_to "Stack", stories_path %>
+				<%= link_to "Submit", new_story_path %>
+				<%= link_to "Recent", root_path(sort: "recent") %>
+				<%= link_to "Top", root_path(filter: "popular") %>
+				<%= link_to "Featured", root_path(filter: "featured") %>
+			</nav>
+		</header>
+		
+		<main class="content">
+			<% flash.each do |k,v| %>
+				<div class="<%= k %>">
+					<p><%= v %></p>
+				</div>
+			<% end %>
+
+			<%= yield %>
+		</main>
+
+		<footer> Stack app Steer &copy; 2014 </footer>
+	</body>
+</html>

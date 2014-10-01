@@ -1,0 +1,21 @@
+
+<% if params[:filter] %>
+	<h1><%= params[:filter].titleize %> Links</h1>
+<% else %>
+	<h1>Links</h1>
+<% end %>
+
+<% @stories.each do |story| %>
+	
+	<article class="featured-<%= story.is_featured %>">
+		<span><%= story.votes.count %></span>
+
+		<span class="upvote"><%= link_to "up", story_votes_path(story), method: :post %></span>
+		<span class="downvote"><%= link_to "down", "/stories/#{story.id}/votes/downvote", method: :delete %></span>
+
+		<h2><%= link_to story.title, story.url %></h2>
+		<p><%= story[:body] %></p>
+
+		<%= link_to "#{story.comments.count} Comments", story_path(story) %>
+	</article>
+<% end %>
